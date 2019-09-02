@@ -2,11 +2,11 @@ package main
 
 import "fmt"
 
-var aString = "hello world"
-var aInteger int
-var aBool bool
-
 func main() {
+	// short variable declaration
+	aString := "hello world"
+	aInteger := 0
+	aBool := false
 	fmt.Println(aString)
 	fmt.Println(aInteger + 123)
 	if aBool {

@@ -10,6 +10,7 @@ func main() {
 	fmt.Println(c)
 }
 
+// String Celcius类型的方法，将类型转为string
 func (c Celcius) String() string {
 	return fmt.Sprintf("%.2f ℃", float64(c))
 }
