@@ -6,6 +6,8 @@ import (
 	"os"
 )
 
+// 仍然是整除求商和余数的例子
+// 多返回值，命名返回值
 func divmod(a, b int) (quotient, remainder int, err error) {
 	if b == 0 {
 		err = errors.New("divide by zero")
