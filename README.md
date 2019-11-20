@@ -9,7 +9,7 @@
 - [EP.III 字符串](Episode.III.String.md)
 - [EP.IV 字典](Episode.IV.Map.md)
 - [EP.V 函数](Episode.V.Function.md)
-- [EP.VI 结构体](Episode.VI.Struct.md)
+- [EP.VI 结构体和错误](Episode.VI.Struct.md)
 - [EP.VII 指针](Episode.VII.Pointer.md)
 - [EP.VIII 方法](Episode.VIII.Method.md)
 - [EP.IX 结构体嵌套](Episode.IX.Nested.md)
