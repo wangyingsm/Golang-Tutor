@@ -29,6 +29,8 @@ bs := []byte(s)
 rs := []rune(s)
 ```
 
+[运行这个例子](https://goplay.space/#0gvJtURNtbA)
+
 或反过来：
 
 ```go
@@ -55,15 +57,19 @@ for i, v := range a {
 }
 ```
 
+[运行这个例子](https://goplay.space/#u7LMAQRliMF)
+
 由于字符串的底层是字节数组因此，字符串也算作集合类型之一。但是当你希望遍历字符串底层数组中的每个字节时，结果可能会让你困惑：
 
 ```go
 s := "你好"
 for _, v := range s {
     // 你可能会预期输出6行，实际输出了2行
-    fmt.Printf("%x", v)
+    fmt.Printf("%x\n", v)
 }
 ```
+
+[运行这个例子](https://goplay.space/#83U93nFQDh4)
 
 原因就是range string的时候，range操作会将字符串按照UTF-8字符来进行遍历，因此得不到每个字节的内容，如果需要遍历每个字节，可以有两种选择：
 
@@ -76,6 +82,8 @@ for i := 0; i < len(s); i++ {
     fmt.Printf("%x\n", s[i])    // 使用len取得的是底层数组的长度
 }
 ```
+
+[运行这个例子](https://goplay.space/#2e_ek9B-X0y)
 
 ## 字符串运算
 
@@ -104,6 +112,8 @@ rm := "sums up"
 s := fmt.Sprintf("%d %s %d %s %d", a, op, b, rm, a+b)
 ```
 
+[运行这个例子](https://goplay.space/#ov4rxOv-3WZ)
+
 详见：[EP.XIX 标准库](Episode.XIX.Stdlib.md)
 
 ## 字符串长度
@@ -118,6 +128,8 @@ s := "你好，世界"
 fmt.Println(len([]rune(s)))
 fmt.Println(utf8.RuneCountInString(s))
 ```
+
+[运行这个例子](https://goplay.space/#JQYaYOtuBq0)
 
 [例子 字符串](examples/ep03/string_type.go)
 

@@ -65,6 +65,8 @@ slice1 := make([]int, 3)
 slice2 := make([]string, 5, 10)
 ```
 
+[运行这个例子](https://goplay.space/#ueNd-K7cGVu)
+
 ### 操作切片
 
 切片的长度和容量与数组不一样，是可变的，因此我们可以添加元素到切片当中。此时如果切片的容量足够存储添加的元素，则仅需要将新的元素值存储在底层数组的相应位置并且修改切片的有效长度len即可；如果切片的容量已经不够存储添加的元素，则需要进行扩容，做法是新分配一个新的底层数组，足以容纳切片中所有的元素。
@@ -79,6 +81,8 @@ slice = append(slice, 1)
 // len(slice) = 7, cap(slice) = 12
 slice = append(slice, 2, 3, 4)
 ```
+
+[运行这个例子](https://goplay.space/#GeigUUqfZEn)，注意由于go版本的不同，这个例子在goplay上的呈现会有一定区别。
 
 append函数的签名如下：
 
@@ -99,6 +103,8 @@ slice2 := []int{1, 2, 3, 4}
 slice1 = append(slice1, slice2...)
 ```
 
+[运行这个例子](https://goplay.space/#AhIDWW-GAb7)
+
 ### 将数组切片
 
 如果我们需要将数组中的其中一段做成一个切片，我们可以使用简单的中括号语法 `[startInclusive: endExclusive]`，前一个序号是切片开始的位置序号，从0开始，包括在切片当中，后一个序号是切片结束的位置序号，不包括在切片当中。事实上，大多C语言类生出来的语法都遵循这个半闭半开区间的法则。例如：
@@ -114,6 +120,8 @@ slice3 := arr[5:]
 // slice4 will be [1, 2, 3, 0, 0, 0, 0, 0, 0, 0]
 slice4 := arr[:]
 ```
+
+[运行这个例子](https://goplay.space/#jk0pdFzkbZp)
 
 从上例中我们可以看到，start和end都可以省略，省略之后就代表着从第一个元素开始或到最后一个元素为止。
 
@@ -134,6 +142,8 @@ slice2 := slice1[2:5]
 // take slice1 elements 0, 1, 2, 3, 4, 5
 slice3 := slice1[:6]
 ```
+
+[运行这个例子](https://goplay.space/#oXZhRQuIuTM)
 
 对数组或切片进行切片操作之后，新的切片的有效长度len是很容易知道的，上例中slice2的len为3，而slice3的len为6。但是新切片的容量会变成多少呢？
 
