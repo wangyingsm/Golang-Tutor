@@ -67,6 +67,8 @@ increaseOne(a)
 fmt.Println(a)
 ```
 
+[运行这个例子](https://goplay.space/#k1WnoS00zK1)
+
 造成这个结果的原因就在于，实际上调用函数的时候，Go并不是将a这个数组的引用传递给了参数，而是将整个数组都复制了一份到函数的参数arr处，然后这份a的副本参与了函数体的运算，因此，a的内容并未发生任何改变。
 
 如果你已经编写了一些Go程序了，你可能会反驳我上面的说法，比方说，"用slice作为参数类型，那不就相当于传的引用了吗？"。（如果你不理解这是什么意思，我建议你将上面例子中的代码修改一下，将参数的部分和a的声明部分都改为切片slice的类型，再次运行，你会得到原本预期的结果。）
@@ -105,6 +107,8 @@ fmt.Println(sum(100))
 fmt.Println(sum(1,2,3))
 ```
 
+[运行这个例子](https://goplay.space/#pI7F7tA5EcN)
+
 如果函数有多个参数，其中一个是可变长参数，那么必须将可变长参数放在参数列表最后：
 
 ```go
@@ -127,8 +131,10 @@ appendString("hello ", "Go", "lang", " wooh!")
 ```go
 a := []int{1, 2, 3, 4, 5}
 // 输出15
-fmt.Println(sum(a))
+fmt.Println(sum(a...))
 ```
+
+[运行这个例子](https://goplay.space/#hsdlBIItDpq)
 
 [例子：函数的参数](ep05/function_param.go)
 
@@ -238,6 +244,8 @@ fmt.Println(filter(isPositive, arr))
 fmt.Println(filter(isEven, arr))
 ```
 
+[运行这个例子](https://goplay.space/#d8v1RQXWGrs)
+
 从上面的例子可以看到，任何满足`func(int) bool`签名的函数都可以作为prediction参数代入到filter函数进行运算，事实上你可想出无穷多个符合的条件来对slice进行过滤，只要这个条件的函数接受一个标准整数并返回一个布尔值即可。
 
 ### 匿名函数
@@ -252,6 +260,8 @@ fmt.Println(filter(func(year int) bool {
     return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)
 }, years))
 ```
+
+[运行这个例子](https://goplay.space/#HRDZB5UJLir)
 
 上面例子中，我们提供一个新的prediction函数就能将一个年份集合中所有的闰年过滤出来（此处没有考虑输入数据不合法的情况）。但是这个predition函数和前面例子中的isPositive和isEven不相同，它并没有名字，并且这个函数的定义是直接内联写在filter函数的调用语法当中。它等同于像下面一样定义了一个名为isLeapYear的函数，然后将这个函数代入filter的第一个参数一样：
 
@@ -293,9 +303,9 @@ func makeRangeSlice(step int) func(int, int) []int {
 下面我们可以试着使用步长为1，2，3来产生三个函数，让后分别使用它们产生`[0, 10)`区间的slice：
 
 ```go
-step1 = makeRangeSlice(1)
-step2 = makeRangeSlice(2)
-step3 = makeRangeSlice(3)
+step1 := makeRangeSlice(1)
+step2 := makeRangeSlice(2)
+step3 := makeRangeSlice(3)
 // 输出[0 1 2 3 4 5 6 7 8 9]
 fmt.Println(step1(0, 10))
 // 输出[0 2 4 6 8]
@@ -310,6 +320,8 @@ fmt.Println(step3(0, 10))
 // 输出[0 4 8]
 fmt.Println(makeRangeSlice(4)(0, 10))
 ```
+
+[运行上面例子](https://goplay.space/#Xjs2PZSqlRI)
 
 练习：将上述闭包函数修改为支持负数步长，并对参数错误情况进行有效处理。
 
