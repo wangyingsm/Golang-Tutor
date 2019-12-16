@@ -327,4 +327,35 @@ fmt.Println(makeRangeSlice(4)(0, 10))
 
 [例子：闭包](examples/ep05/function_closure.go)
 
+## 特殊的函数：main 和 init
+
+Go中有两个特殊的函数，分别是main和init。main函数是整个程序的入口，这也是大部分类C语言的惯例，相信读者也已经在前面的例子中接触到了main函数了。与C/C++/Rust不同，Go语言中的main函数有着严格的签名：
+
+```go
+func main() {
+    // 程序从这里开始
+}
+```
+
+如果你熟悉C语言的main函数签名，Go有点区别，Go的main函数不接受任何参数，也不返回任何值，当你定义程序入口时，必须严格遵循这个函数签名。并且main函数只能处于main package中（详见[EP.XII 包](Episode.XII.Package.md)）。任何在其他package中定义的main函数都不会被编译器认为是程序入口。
+
+> 如果在Go中需要接受命令行参数和返回值给调用者的话，你需要用到os包中的Args变量和Exit()方法（详见[EP.XIX 标准库](Episode.XIX.Stdlib.md)和`go doc`文档）。
+
+另一个比较陌生的特殊函数是init，它负责对每个包`package`进行初始化工作。根据Go语言标准说明，当一个包被导入`import`的时候，以下事件会依次发生：
+
+1. 递归的调用本包导入的其他包`package`的初始化工作；
+2. 对本包的所有包定义变量进行初始化工作；
+3. 执行本包定义的init函数（如果存在）。
+
+并且，init函数能够保证在一次程序执行过程中只会被执行一次，无论它被导入`import`了多少次（详见[EP.XII 包](Episode.XII.Package.md)）。在main package中，init函数被保证会在main函数之前被执行。init函数也有着与main函数一样的签名：
+
+```go
+func init() {
+    // 包的其他初始化工作写在这个函数中
+    // 例如复杂内存空间的分配，数据库的连接池创建等
+}
+```
+
+[运行main和init例子](https://goplay.space/#ZC1E9p9-_rE)
+
 [EP.III 字符串](Episode.III.String.md) <|> [EP.VI 结构体](Episode.VI.Struct.md)
