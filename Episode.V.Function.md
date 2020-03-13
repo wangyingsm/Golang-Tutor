@@ -358,4 +358,4 @@ func init() {
 
 [运行main和init例子](https://goplay.space/#ZC1E9p9-_rE)
 
-[EP.III 字符串](Episode.III.String.md) <|> [EP.VI 结构体](Episode.VI.Struct.md)
+[EP.IV 字典](Episode.IV.Map.md) <|> [EP.VI 结构体](Episode.VI.Struct.md)
