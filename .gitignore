@@ -1,3 +1,5 @@
 .vscode
 go.mod
 go.sum
+
+**/*.drawio
